@@ -16,7 +16,7 @@ const projects: Project[] = [
     title: "Outreach Bot",
     tag: "AI Workflow Automation",
     description:
-      "A job outreach and application assistant that helps manage roles, contacts, follow ups, fit scoring, and personalized messages in one workflow. The system is designed to use context from resumes, job descriptions, prior outreach, and contact history so outreach feels more relevant and less generic.",
+      "A job outreach and application assistant that helps manage roles, contacts, follow ups, fit scoring, and personalized messages in one workflow. Built to use context from resumes, job descriptions, prior outreach, and contact history so outreach feels relevant instead of generic.",
   },
   {
     title: "BrainBot",
@@ -28,7 +28,48 @@ const projects: Project[] = [
     title: "LLM Tipping Points",
     tag: "AI Reliability Research",
     description:
-      "A research project exploring how LLM systems can appear reliable, then begin to degrade under ambiguity, complexity, or pressure before users clearly notice. The work focuses on trust, evaluation, uncertainty, escalation, and when AI systems should hand off to a human.",
+      "Research at d-AI-ta on detecting when LLM systems quietly degrade — appearing reliable, then drifting under ambiguity, complexity, or pressure before users notice. Co-developed a tipping-point analysis tool covering legal, financial, healthcare, and security domains. Co-authored peer-reviewed work with talks at AI conferences in London (2025, 2026).",
+  },
+];
+
+type Experience = {
+  org: string;
+  role: string;
+  when: string;
+};
+
+const experience: Experience[] = [
+  { org: "d-AI-ta LLC", role: "Technical Lead, AI Adoption Consultancy", when: "2025 – Present" },
+  { org: "Moody's", role: "Research Intern, Senior Director's team", when: "Summer 2024" },
+  { org: "World Bank", role: "Climate Research Assistant", when: "Summer 2024" },
+];
+
+type Publication = {
+  title: string;
+  venue: string;
+  year: string;
+};
+
+const publications: Publication[] = [
+  {
+    title: "When AI Output Tips to Bad but Nobody Notices: Legal Implications of AI's Mistakes",
+    venue: "Springer Lecture Notes",
+    year: "2026, in press",
+  },
+  {
+    title: "Hidden Good-to-Bad Tipping in ChatGPT-like AI",
+    venue: "AI, Computer Science & Robotics Technology",
+    year: "2026",
+  },
+  {
+    title: "Safety in ChatGPT-like Chatbots across Health, Finance, Law, Security and Defense Settings",
+    venue: "Journal of Artificial Intelligence & Autonomous Intelligence",
+    year: "2026",
+  },
+  {
+    title: "Basic Attention Head as a Building Block Toward Understanding Transformer-Based Generative AI",
+    venue: "Advances in Artificial Intelligence & Machine Learning",
+    year: "2025",
   },
 ];
 
@@ -38,13 +79,17 @@ const skills: string[] = [
   "Workflow Automation",
   "RAG Systems",
   "LLM Evaluation",
+  "Agentic AI",
+  "Applied ML",
+  "NLP",
+  "Causal Inference",
+  "Agent-based Simulation",
   "Human Computer Interaction",
   "User Research",
   "Python",
+  "SQL",
   "JavaScript",
   "React",
-  "Data Analysis",
-  "Applied ML",
   "Product Strategy",
 ];
 
@@ -54,13 +99,19 @@ export default function Page() {
       <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
         <Header />
         <Hero />
+
         <Section id="about" title="About">
           <p className="text-slate-700 leading-relaxed">
             I&rsquo;m studying Connective Media at Cornell Tech, an interdisciplinary
             master&rsquo;s program across computer science, information systems, human
-            computer interaction, and entrepreneurship. I&rsquo;m looking for roles where
-            I can contribute to AI product, product engineering, data driven systems,
-            workflow automation, or technical product strategy.
+            computer interaction, and entrepreneurship. Before Cornell Tech I graduated
+            cum laude with honors from Brandeis and worked on research and analytics teams
+            at Moody&rsquo;s, the World Bank, and d-AI-ta, where I&rsquo;m a technical lead
+            on AI adoption and reliability. My collaborators and I have co-authored
+            peer-reviewed AI research on transformer interpretability, output reliability,
+            and chatbot safety, with talks at AI conferences in London. I&rsquo;m looking
+            for roles where I can contribute to AI product, product engineering, data
+            driven systems, workflow automation, or technical product strategy.
           </p>
         </Section>
 
@@ -70,6 +121,45 @@ export default function Page() {
               <ProjectCard key={p.title} project={p} />
             ))}
           </div>
+        </Section>
+
+        <Section id="experience" title="Experience">
+          <ul className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+            {experience.map((e) => (
+              <li key={e.org + e.when} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                <div>
+                  <p className="font-medium text-slate-900">{e.org}</p>
+                  <p className="text-sm text-slate-600">{e.role}</p>
+                </div>
+                <p className="text-sm text-slate-500 shrink-0">{e.when}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-sm text-slate-500">
+            Full work history on the{" "}
+            <a
+              href={CV_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
+            >
+              CV
+            </a>
+            .
+          </p>
+        </Section>
+
+        <Section id="publications" title="Selected Publications">
+          <ul className="space-y-4">
+            {publications.map((p) => (
+              <li key={p.title} className="rounded-2xl border border-slate-200 bg-white p-5">
+                <p className="font-medium text-slate-900 leading-snug">{p.title}</p>
+                <p className="mt-1 text-sm text-slate-600">
+                  {p.venue} · {p.year}
+                </p>
+              </li>
+            ))}
+          </ul>
         </Section>
 
         <Section id="skills" title="Skills">
@@ -121,7 +211,8 @@ function Header() {
       <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-600">
         <a href="#about" className="hover:text-slate-900">About</a>
         <a href="#projects" className="hover:text-slate-900">Projects</a>
-        <a href="#skills" className="hover:text-slate-900">Skills</a>
+        <a href="#experience" className="hover:text-slate-900">Experience</a>
+        <a href="#publications" className="hover:text-slate-900">Publications</a>
         <a href="#contact" className="hover:text-slate-900">Contact</a>
       </nav>
     </header>
@@ -145,9 +236,13 @@ function Hero() {
       </p>
       <p className="mt-4 text-slate-600 leading-relaxed">
         I&rsquo;m a master&rsquo;s student at Cornell Tech focused on AI product,
-        product engineering, workflow automation, and human centered systems.
-        I&rsquo;m interested in building practical AI tools that help people manage
-        complex workflows, make better decisions, and trust the systems they use.
+        product engineering, workflow automation, and human centered systems. I work
+        on practical AI tools that help people manage complex workflows, make better
+        decisions, and trust the systems they use.
+      </p>
+      <p className="mt-3 text-sm text-slate-500">
+        Currently: Technical Lead at d-AI-ta (AI adoption consultancy) · Co-author on
+        peer-reviewed AI reliability research.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
         <PrimaryLink href={`mailto:${EMAIL}`}>Email me</PrimaryLink>
