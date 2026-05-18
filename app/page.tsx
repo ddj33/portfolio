@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/dylan-johnson-restrepo-43b217298/";
-// TODO: replace with the public link or PDF path for your CV (e.g. "/dylan-johnson-restrepo-cv.pdf")
-const CV_URL = "#";
+const CV_URL = "/Dylan_Johnson_Restrepo_CV.pdf";
 
 const EMAIL = "ddj33@cornell.edu";
 
