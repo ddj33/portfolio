@@ -9,6 +9,8 @@ type Project = {
   title: string;
   tag: string;
   description: string;
+  href?: string;
+  linkLabel?: string;
 };
 
 const projects: Project[] = [
@@ -17,18 +19,40 @@ const projects: Project[] = [
     tag: "AI Workflow Automation",
     description:
       "A job outreach and application assistant that helps manage roles, contacts, follow ups, fit scoring, and personalized messages in one workflow. Built to use context from resumes, job descriptions, prior outreach, and contact history so outreach feels relevant instead of generic.",
+    href: "https://kurt-idea-purchased-encyclopedia.trycloudflare.com/chat",
+    linkLabel: "Try the chatbot",
   },
   {
     title: "BrainBot",
     tag: "Personal AI Assistant",
     description:
       "An AI assistant concept focused on helping users organize thoughts, remember context, and turn scattered information into useful next steps. The project explores how a personal AI system can support planning, reflection, decision making, and knowledge management without feeling overwhelming.",
+    href: "https://docs.google.com/presentation/d/1akjSV3FvY9sEdeEluzmHX_UVlxZe_MFIQcgg4jcK5fw/edit?usp=sharing",
+    linkLabel: "View presentation",
   },
   {
     title: "LLM Tipping Points",
     tag: "AI Reliability Research",
     description:
       "Research at d-AI-ta on detecting when LLM systems quietly degrade — appearing reliable, then drifting under ambiguity, complexity, or pressure before users notice. Co-developed a tipping-point analysis tool covering legal, financial, healthcare, and security domains. Co-authored peer-reviewed work with talks at AI conferences in London (2025, 2026).",
+    href: "https://d-ai-ta.netlify.app/",
+    linkLabel: "Open demo",
+  },
+  {
+    title: "RiskNet",
+    tag: "Reputation Risk Analysis",
+    description:
+      "An interactive demo that analyzes reputation risk for companies and public figures using an AI engine, Wikipedia as a RAG source, and a proprietary dataset spanning 30+ social media platforms.",
+    href: "https://risknet.vercel.app/",
+    linkLabel: "Open demo",
+  },
+  {
+    title: "LLM Token Dynamics — NetLogo Simulator",
+    tag: "Research Visualization",
+    description:
+      "An agent-based simulation that visualizes the fusion and fission of tokens across the layers of a large language model, built to make internal LLM behavior more legible.",
+    href: "https://gwdonlab.github.io/netlogo-simulator/",
+    linkLabel: "Open simulator",
   },
 ];
 
@@ -276,12 +300,37 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-slate-300">
       <div className="flex items-center justify-between gap-4">
-        <h3 className="text-lg font-semibold text-slate-900">{project.title}</h3>
+        <h3 className="text-lg font-semibold text-slate-900">
+          {project.href ? (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
+            >
+              {project.title}
+            </a>
+          ) : (
+            project.title
+          )}
+        </h3>
         <span className="shrink-0 rounded-full bg-slate-900 px-2.5 py-1 text-xs font-medium text-white">
           {project.tag}
         </span>
       </div>
       <p className="mt-3 text-slate-700 leading-relaxed">{project.description}</p>
+      {project.href && (
+        <p className="mt-4 text-sm">
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
+          >
+            {project.linkLabel ?? "View"} →
+          </a>
+        </p>
+      )}
     </article>
   );
 }
