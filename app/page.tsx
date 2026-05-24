@@ -19,7 +19,7 @@ const projects: Project[] = [
     tag: "AI Workflow Automation",
     description:
       "A job outreach and application assistant that helps manage roles, contacts, follow ups, fit scoring, and personalized messages in one workflow. Built to use context from resumes, job descriptions, prior outreach, and contact history so outreach feels relevant instead of generic.",
-    href: "https://kurt-idea-purchased-encyclopedia.trycloudflare.com/chat",
+    href: "https://portfolio-lyart-nu-14.vercel.app/",
     linkLabel: "Try the chatbot",
   },
   {
