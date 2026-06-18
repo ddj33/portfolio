@@ -9,11 +9,29 @@ type Project = {
   title: string;
   tag: string;
   description: string;
+  bullets?: string[];
+  tools?: string;
   href?: string;
   linkLabel?: string;
 };
 
 const projects: Project[] = [
+  {
+    title: "Mkro Operations Automation System",
+    tag: "Operations Automation",
+    description:
+      "Built internal operations tooling for Mkro to automate order tracking, shipment updates, and prospect feasibility planning. Designed Airtable workflows that connect SKU lead times, production stages, shipping timelines, AfterShip tracking, and Discord alerts into one operational system.",
+    bullets: [
+      "Built Airtable order tracking workflows using SKU-level lead times, production stages, and shipping modes.",
+      "Integrated AfterShip tracking with Airtable so shipment status updates flow back automatically.",
+      "Added Discord alerting for tracking updates, ETA risk, overdue orders, and factory follow-ups.",
+      "Created factory-specific tracking views with internal fields hidden and locked.",
+      "Built a prospect feasibility calculator that works backward from event deadlines to determine latest approval dates, bottleneck SKUs, milestone dates, slack days, and green/yellow/red feasibility.",
+      "Kept live order workflows isolated from quote/prospect calculations to avoid operational risk.",
+    ],
+    tools:
+      "Airtable · AfterShip · Discord Webhooks · JavaScript automations · API integrations · operations workflow design",
+  },
   {
     title: "Outreach Bot",
     tag: "AI Workflow Automation",
@@ -319,6 +337,21 @@ function ProjectCard({ project }: { project: Project }) {
         </span>
       </div>
       <p className="mt-3 text-slate-700 leading-relaxed">{project.description}</p>
+      {project.bullets && (
+        <ul className="mt-4 space-y-2 text-slate-700 leading-relaxed">
+          {project.bullets.map((b) => (
+            <li key={b} className="flex gap-2.5">
+              <span aria-hidden className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-slate-400" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {project.tools && (
+        <p className="mt-4 text-sm text-slate-500">
+          <span className="font-medium text-slate-600">Tools:</span> {project.tools}
+        </p>
+      )}
       {project.href && (
         <p className="mt-4 text-sm">
           <a
