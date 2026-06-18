@@ -17,20 +17,21 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Mkro Operations Automation System",
-    tag: "Operations Automation",
+    title: "Operations Automation & Logistics Intelligence Platform",
+    tag: "Operations Platform",
     description:
-      "Built internal operations tooling for Mkro to automate order tracking, shipment updates, and prospect feasibility planning. Designed Airtable workflows that connect SKU lead times, production stages, shipping timelines, AfterShip tracking, and Discord alerts into one operational system.",
+      "Designed and implemented an end-to-end operations automation platform integrating order management, shipment tracking, production planning, and deadline feasibility analysis into a single source of truth. The system synchronizes operational data across tools, automates status propagation, surfaces delivery risk proactively, and improves planning accuracy for customer orders and event-driven projects with hard deadlines.",
     bullets: [
-      "Built Airtable order tracking workflows using SKU-level lead times, production stages, and shipping modes.",
-      "Integrated AfterShip tracking with Airtable so shipment status updates flow back automatically.",
-      "Added Discord alerting for tracking updates, ETA risk, overdue orders, and factory follow-ups.",
-      "Created factory-specific tracking views with internal fields hidden and locked.",
-      "Built a prospect feasibility calculator that works backward from event deadlines to determine latest approval dates, bottleneck SKUs, milestone dates, slack days, and green/yellow/red feasibility.",
-      "Kept live order workflows isolated from quote/prospect calculations to avoid operational risk.",
+      "Architected an Airtable-based operations data model spanning SKU-level lead times, production stages, shipping modes, and milestone dates — used as the single source of truth across sales, production, and fulfillment.",
+      "Integrated AfterShip via API so live carrier tracking, ETAs, and delivery exceptions flow back into the operational record automatically, eliminating manual status entry.",
+      "Built a Discord alerting layer that proactively surfaces ETA risk, overdue orders, tracking updates, and factory follow-ups to the right channels — shifting operations from reactive triage to early intervention.",
+      "Designed scoped, permissioned views for external factory partners that expose only what they need to act on, hiding internal commercial and planning data behind row-level filters.",
+      "Built a feasibility calculator that works backward from a hard event deadline to derive latest viable approval date, bottleneck SKUs, per-milestone target dates, slack days, and a green/yellow/red feasibility verdict — turning \"can we hit this?\" from a judgment call into a deterministic check.",
+      "Isolated live order workflows from quote and prospect modeling as a deliberate architectural boundary, so speculative deal analysis can never mutate production-critical data.",
+      "Worked directly with operations stakeholders to elicit requirements, iterate on workflows, and ship incrementally — designing the system around how the team actually plans, books, and fulfills work.",
     ],
     tools:
-      "Airtable · AfterShip · Discord Webhooks · JavaScript automations · API integrations · operations workflow design",
+      "Airtable · AfterShip API · Discord Webhooks · JavaScript automations · REST API integrations · workflow architecture",
   },
   {
     title: "Outreach Bot",
