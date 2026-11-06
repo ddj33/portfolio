@@ -132,14 +132,42 @@ type Experience = {
   org: string;
   role: string;
   when: string;
-  summary?: string;
+  location: string;
+  bullets: string[];
 };
 
 const experience: Experience[] = [
-  { org: "MKRO", role: "AI Engineer + Technical Project Manager", when: "June – August 2026", summary: "Built operations automation and AI sales-intelligence workflows; worked with founders to translate requirements into software used by non-technical teams." },
-  { org: "d-AI-ta LLC", role: "Technical Lead, AI Adoption Consultancy", when: "2025 – Present" },
-  { org: "Moody's", role: "Research Intern, Senior Director's team", when: "Summer 2024" },
-  { org: "World Bank", role: "Climate Research Assistant", when: "Summer 2024" },
+  {
+    org: "MKRO", role: "AI Engineer + Technical Project Manager", when: "June – August 2026", location: "New York, NY",
+    bullets: [
+      "Architected a production operations platform across Airtable, AfterShip, Discord, and Seamless.ai, automating order workflows, shipment synchronization, CRM actions, and real-time alerts.",
+      "Engineered JavaScript/Python services, REST API integrations, and webhook pipelines supporting 98 orders and reliable intelligence across 29 active shipments.",
+      "Built an LLM-powered sales intelligence system for 296 companies, automating enrichment, ecommerce detection, lead scoring, decision-maker discovery, and personalized outreach generation.",
+      "Partnered with founders to convert ambiguous operating needs into tested, deployed software and repeatable workflows adopted by non-technical users."
+    ]
+  },
+  {
+    org: "d-AI-ta LLC", role: "Technical Lead, AI Adoption Consultancy", when: "Summer 2025 – Present", location: "Remote · Part-time",
+    bullets: [
+      "Engineered client-facing AI systems for LLM reliability, transformer interpretability, and reputation-risk analysis using RAG and proprietary data sources.",
+      "Developed evaluation frameworks for model failure and output reliability, translating technical findings into deployable tools and client recommendations."
+    ]
+  },
+  {
+    org: "Moody's", role: "Research Intern, Senior Director's Team", when: "Summer 2024", location: "Washington, DC",
+    bullets: [
+      "Developed Python and NetLogo simulations for compound disaster-risk scenarios and interactive dashboards for event-driven disruption analysis.",
+      "Modeled extreme-event onset and severity using statistical methods to strengthen AI-enabled risk analytics and scenario evaluation."
+    ]
+  },
+  {
+    org: "World Bank", role: "Climate Research Assistant", when: "Summer 2024", location: "Washington, DC",
+    bullets: ["Built quantitative analyses and data visualizations for climate-adaptation and sustainable-development initiatives."]
+  },
+  {
+    org: "IKALON Wealth Management", role: "Client Liaison & Financial Analyst Intern", when: "Summer 2023", location: "Bogota, Colombia",
+    bullets: ["Automated investment-performance tracking and visualization with Python while delivering bilingual client-facing financial analysis."]
+  }
 ];
 
 type Publication = {
@@ -251,13 +279,18 @@ export default function Page() {
         <Section id="experience" title="Experience">
           <ul className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
             {experience.map((e) => (
-              <li key={e.org + e.when} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                <div>
-                  <p className="font-medium text-slate-900">{e.org}</p>
-                  <p className="text-sm text-slate-600">{e.role}</p>
-                  {e.summary && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{e.summary}</p>}
+              <li key={e.org + e.when} className="px-5 py-6 sm:p-7">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <div>
+                    <h3 className="font-semibold text-slate-900">{e.org}</h3>
+                    <p className="mt-1 text-sm font-medium text-slate-700">{e.role}</p>
+                    <p className="mt-1 text-sm text-slate-500">{e.location}</p>
+                  </div>
+                  <p className="text-sm text-slate-500 shrink-0">{e.when}</p>
                 </div>
-                <p className="text-sm text-slate-500 shrink-0">{e.when}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 marker:text-slate-400">
+                  {e.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}
+                </ul>
               </li>
             ))}
           </ul>
