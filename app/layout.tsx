@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Dylan Johnson Restrepo — AI Product & Product Engineering",
   description:
-    "Dylan Johnson Restrepo — Cornell Tech MS Connective Media. Building AI tools that fit real workflows. AI Product · Product Engineering · Workflow Automation.",
+    "Dylan Johnson Restrepo — Cornell Tech dual MEng student building AI systems, product software, and workflow automation. Selected work at MKRO, AI reliability research, and game development.",
 };
 
 export default function RootLayout({
